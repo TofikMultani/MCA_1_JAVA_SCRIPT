@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Event Click</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+    {
+        $("p").mouseover(function()
+        {
+            $("p").html("Mouse roming");
+            $("p").css("background-color","yellow");
+        });
+
+        $("p").mouseleave(function()
+        {
+            $("p").html("Mouse leave");
+            $("p").css("background-color","red");
+        });
+
+        $("p").mousedown(function()
+        {
+            $("p").html("Mouse down");
+            $("p").css("background-color","green");
+        });
+
+        $("p").mouseup(function()
+        {
+            $("p").html("Mouse up");
+            $("p").css("background-color","blue");
+        });
+
+        $("p").dblclick(function()
+        {
+            $("p").html("Double click");
+            $("p").css("background-color","purple");
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <p>Mouse Event Click</p>
+</body>
+</html>

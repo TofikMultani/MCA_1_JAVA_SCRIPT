@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Robot Animation</title>
+    <style>
+        body {
+            background-color: #000; /* Dark background for glowing effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .frame {
+            width: 80%;
+            height: 400px;
+            border: 2px solid #555;
+            position: relative;
+            overflow: hidden;
+            background-color: #111;
+        }
+
+        .robot-container {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            animation: moveRobot 4s linear infinite;
+        }
+
+        .rbtBody {
+            width: 100px;
+            height: 150px;
+            background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+            border-radius: 20px;
+            position: relative;
+            transform-origin: bottom center;
+            animation: runBody 0.8s infinite;
+            box-shadow: 0 0 15px #4CAF50, 0 0 25px #4CAF50; /* Glowing effect */
+        }
+        
+        /* 3D effect for the body */
+        .rbtBody::before, .rbtBody::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: perspective(500px) rotateY(15deg);
+            z-index: -1;
+        }
+        .rbtBody::after {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: perspective(500px) rotateY(-15deg);
+        }
+
+        .rbtHead {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #FFC107, #FF8F00);
+            border-radius: 50%;
+            position: absolute;
+            top: -60px;
+            left: 10px;
+            transform-origin: bottom center;
+            animation: runHead 0.8s infinite;
+            box-shadow: 0 0 10px #FFC107, 0 0 20px #FFC107; /* Glowing effect */
+        }
+        
+        .rbtEye {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rbtEye1, .rbtEye2 {
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff; /* Eye glow */
+        }
+
+        .rbtAntenna {
+            width: 5px;
+            height: 30px;
+            background-color: #ccc;
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .rbtAntenna::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #FF5722;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            left: -2.5px;
+            box-shadow: 0 0 5px #FF5722, 0 0 10px #FF5722;
+        }
+
+        .rbtArm {
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(to bottom, #FF5722, #D84315);
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            transform-origin: top;
+        }
+
+        .rbtArm.left {
+            left: -15px;
+            transform: rotate(25deg);
+            animation: runArm1 0.8s infinite;
+            box-shadow: 0 0 10px #FF5722;
+        }
+
+        .rbtArm.right {
+            right: -15px;
+            transform: rotate(-25deg);
+            animation: runArm2 0.8s infinite;
+            box-shadow: 0 0 10px #FF5722;
+        }
+        
+        /* 3D effect for arms */
+        .rbtArm::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transform: perspective(500px) rotateY(15deg);
+        }
+
+        .rbtCenterPart {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to bottom, #FF5722, #D84315);
+            position: absolute;
+            top: 50px;
+            left: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #FF5722, 0 0 20px #FF5722;
+        }
+
+        .rbtLegg {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            position: absolute;
+            top: 150px;
+        }
+
+        .rbtLegg::before, .rbtLegg::after {
+            content: '';
+            width: 20px;
+            height: 70px;
+            background: linear-gradient(to bottom, #607D8B, #455A64);
+            position: absolute;
+            bottom: -70px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #607D8B, 0 0 20px #607D8B;
+        }
+
+        .rbtLegg::before {
+            left: 10px;
+            transform-origin: top;
+            animation: runLeg1 0.8s infinite;
+        }
+
+        .rbtLegg::after {
+            right: 10px;
+            transform-origin: top;
+            animation: runLeg2 0.8s infinite;
+        }
+        
+        /* 3D effect for legs */
+        .rbtLegg::before, .rbtLegg::after {
+            background: linear-gradient(to bottom, #607D8B, #455A64);
+            position: absolute;
+            bottom: -70px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #607D8B, 0 0 20px #607D8B;
+        }
+        .rbtLegg::before::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transform: perspective(500px) rotateY(15deg);
+        }
+
+        .thought-bubble {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            color: #333;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fade-in 1s forwards;
+            box-shadow: 0 0 10px #fff; /* Glow */
+            
+        }
+
+        .thought-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 15px 0 15px;
+            border-color: #fff transparent transparent transparent;
+            transform: translateX(-50%);
+        }
+
+        .thought-bubble::after, .thought-bubble-small {
+            content: '';
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .thought-bubble::after {
+            width: 20px;
+            height: 20px;
+            bottom: -30px;
+            left: 45%;
+        }
+
+        .thought-bubble-small {
+            width: 10px;
+            height: 10px;
+            bottom: -40px;
+            left: 40%;
+        }
+
+        @keyframes runBody {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @keyframes runHead {
+            0%, 100% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+        }
+        
+        @keyframes runArm1 {
+            0%, 100% { transform: rotate(25deg); }
+            50% { transform: rotate(-25deg); }
+        }
+
+        @keyframes runArm2 {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+
+        @keyframes runLeg1 {
+            0%, 100% { transform: rotate(25deg); }
+            50% { transform: rotate(-25deg); }
+        }
+
+        @keyframes runLeg2 {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+        
+        @keyframes moveRobot {
+            0% { left: 0; }
+            100% { left: calc(100% - 100px); }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="frame">
+        <div class="robot-container">
+            <div class="rbtBody">
+                <div class="rbtHead">
+                    <div class="rbtAntenna"></div>
+                    <div class="rbtEye">
+                        <div class="rbtEye1"></div>
+                        <div class="rbtEye2"></div>
+                    </div>
+                </div>
+                <div class="rbtArm left"></div>
+                <div class="rbtArm right"></div>
+                <div class="rbtCenterPart"></div>
+                <div class="rbtLegg"></div>
+            </div>
+            <div class="thought-bubble">
+                Hello, I am Mohit
+                <div class="thought-bubble-small"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Methods</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("button").click(function()
+            {
+                $("img").attr({width:"250",height:"100"});
+            });
+        });
+
+
+        //=====================================================================
+        $(function()
+        {
+            $("#one").css({background:"yellow","font-size":"200%"});
+            $("#two").css({background:"pink","color":"green","font-weight":"bold","align":"left"});
+        });
+
+        //=====================================================================
+       
+
+        //=====================================================================
+        $(document).ready(function()
+        {
+            $("p").css({background:"yellow","font-size":"200%"});
+        });
+    </script>
+</head>
+<body>
+    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" width="500" height="200"><br>
+    <button>Click Me</button>
+
+    <!-- ===================================================================== -->
+     <p id="one">Hello World</p>
+     <p id="two">TOFIK MULTANI</p>
+
+     <!-- ===================================================================== -->
+     
+
+</body>
+</html>

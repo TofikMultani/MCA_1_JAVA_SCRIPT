@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Dyanamic Form</title>
+    <script type="text/javascript">
+         const users =
+                        [
+                            { username:'admin',password:'123' },
+                            { username:'tofik',password:'456' },
+                            { username:'multani',password:'789' }
+                        ];
+
+                        function fun()
+                        {
+                            const form = document.forms["myform"];
+                            const u = form.uname.value.trim();
+                            const p = form.pass.value.trim();
+
+                            if(!u || !p)
+                            {
+                                alert("Please Enter Both Username Password");
+                                return false;
+                            }
+
+                        const userFound = users.find(user => user.username === u && user.password === p);
+
+                            if(userFound)
+                            {
+                                alert("Login Successful.. Welcome..." + u);
+                            }
+                            else
+                            {
+                                alert("Incorrect username or password");
+                            }
+                            
+                            return false;
+                        }
+    </script>
+
+   
+
+</head>
+<body align="center">
+    <h2>Login Form</h2>
+
+    <form name="myform" onsubmit="fun(); return false;">
+
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" name="uname" required><br><br>
+
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="pass" required><br><br>
+
+        <input type="submit" value="Login">
+        
+    </form>
+   
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery First</title>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h1 class ="temp">H1 Tag class</h1>
+    <p class="temp">P Tag class</p>
+ 
+    <button id="btn1">Image small</button>
+    <button id="btn2">Image large</button>
+
+    <button id="btn">Click Me</button>
+
+    <script>
+        $(document).ready(function(){
+            $("p").css("background-color","red");
+
+        });
+// ======================================================================
+        $('#btn').click(function()
+        {
+            alert("Button Clicked");
+        });
+
+// =========================================================================
+        $(document).ready(function(){
+            $(".temp").css("background-color","yellow");
+        });
+
+// =========================================================================            
+       
+        $("#btn1").click(function()
+        {
+            $("img").attr({width:"100px",height:"100px"});
+        });
+// =========================================================================
+        $("#btn2").click(function()
+        {
+            $("img").attr({width:"300px",height:"300px"});
+        });
+
+// =========================================================================
+
+
+
+    </script>
+
+    <p>Hello World</p>
+    <p>TOFIK MULTANI</p>
+    <p>MCA Student</p>
+
+    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo">
+
+    
+</body>
+</html>

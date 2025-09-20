@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Events</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("input").keydown(function()
+            {
+                $("input").css("background-color","Yellow");
+            });
+
+            $("input").keyup(function()
+            {
+                $("input").css("background-color","Red");
+            });
+
+            //Keypress or Keydown are same but keyup is different
+
+            // $("input").keypress(function()
+            // {
+            //     $("input").css("background-color","green");
+            // });
+
+            $("input").focus(function()
+            {
+                $("input").css("background-color","Black");
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+    Enter Your Name : <input type="text">
+
+</body>
+</body>
+</html>

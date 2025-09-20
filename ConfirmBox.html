@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Confirm Box</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <script type="text/javascript">
+      function func()
+      {
+        if(confirm("Do you want to Continue???")==true)
+        {
+            document.write("You have clicked on OK");
+        }
+        else
+        {
+            document.write("You have clicked on Cancel");
+        }
+      }
+
+    </script>
+</head>
+<body>
+    <button onclick="func()">Click Me!</button>
+    <h1>Welcome to the Confirm Box Example</h1>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Form</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <script type="text/javascript">
+        function fun()
+        {
+           var a=document.forms["myform"];
+           var u=a.uname.value;
+           var p=a.pword.value;
+
+           if(u.length==0)
+           {
+            alert("U Must Enter User Name and Password")
+           }
+           if(u=="admin" && p=="123")
+           {
+            alert("Login Done.....");
+           }
+           else
+           {
+            alert("Wrong Id or Password");
+           }
+
+        }
+    </script>
+</head>
+<body align="center">
+    <form name="myform">
+        User Name <input type="text" name="uname"><br><br>
+        Password <input type="password" name="pword"><br> <br>
+
+        <input type="button" value="Submit" onclick="fun()">
+    </form>
+</body>
+</html>

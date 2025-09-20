@@ -1,0 +1,1 @@
+document.writeln("This is an external JavaScript file.");

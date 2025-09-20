@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #6dd5fa);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 80px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 92%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #21618c;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s;
+        }
+    </style>
+
+    <script type="text/javascript">
+        const users = [
+            { username: 'admin', password: '123' },
+            { username: 'tofik', password: '456' },
+            { username: 'multani', password: '789' }
+        ];
+
+        function validateForm() {
+            const form = document.forms["myform"];
+            const u = form.uname.value.trim();
+            const p = form.pass.value.trim();
+            const cp = form.confirm_pass.value.trim();
+            const email = form.email.value.trim();
+
+            if (!u || !p || !cp || !email) {
+                alert("Please fill in all fields");
+                return false;
+            }
+
+            if (p.length < 4) {
+                alert("Password must be at least 4 characters long");
+                return false;
+            }
+
+            if (p !== cp) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            const userExists = users.some(user => user.username === u);
+            if (userExists) {
+                alert("Username already exists");
+                return false;
+            }
+
+            alert("Registration Successful for " + u);
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form name="myform" onsubmit="return validateForm();">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="uname">Username:</label>
+            <input type="text" id="uname" name="uname" required>
+
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="pass" required>
+
+            <label for="confirm_pass">Confirm Password:</label>
+            <input type="password" id="confirm_pass" name="confirm_pass" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

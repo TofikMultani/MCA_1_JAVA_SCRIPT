@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FadeInOut</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $(".fout").click(function()
+            {
+                $("div").fadeOut("slow");
+            });
+
+            $(".fin").click(function()
+            {
+                $("div").fadeIn("slow");
+            });
+
+            $(".ftoggle").click(function()
+            {
+                $("div").fadeToggle("slow");
+            });
+
+            $(".fto").click(function()
+            {
+                $("div").fadeTo("slow",0.3);
+            });
+
+        });
+    </script>
+</head>
+<body align="center">
+    <div>
+        <p>The JQuery fadeIn() Menthod is to Fade to Fade in a hidden element.</p>
+        <p>The JQuery fadeOut() Menthod is to Fade out a visible element.</p>
+    </div>
+    <button class="fout">FadeOut</button>
+    <button class="fin">FadeIn</button>
+    <button class="ftoggle">FadeToggle</button>
+    <button class="fto">FadeTo</button>
+</body>
+</html>
